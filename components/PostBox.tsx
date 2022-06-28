@@ -35,9 +35,7 @@ const PostBox = () => {
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit(async formData => {
-    console.log("firing");
     try {
-      console.log("trying");
       const {
         data: { getSubredditListByTopic }
       } = await client.query({
@@ -51,6 +49,7 @@ const PostBox = () => {
 
       if (!subredditExists) {
         //   Create subreddit
+
         const {
           data: { insertSubreddit: newSubreddit }
         } = await addSubreddit({
@@ -59,7 +58,7 @@ const PostBox = () => {
           }
         });
 
-        console.log("Creating subreddit, ", newSubreddit);
+        console.log("Creating new subreddit, ", newSubreddit);
 
         const image = formData.postImage || "";
 
@@ -77,6 +76,7 @@ const PostBox = () => {
 
         console.log("new post, ", newPost);
       } else {
+        console.log("Using existing subreddit!");
         const image = formData.postImage || "";
 
         const {

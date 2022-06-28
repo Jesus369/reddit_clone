@@ -13,11 +13,9 @@ type Comment {
 
 type Post {
   body: String
-  commentList: [Comment] @materializer(query: "getCommentUsingPost_id")
   created_at: DateTime
   id: ID!
   image: String
-  postList: [Post] @materializer(query: "getPostUsingSubreddit_id")
   post: Post
     @materializer(
       query: "getPost"
@@ -26,7 +24,22 @@ type Post {
   subreddit_id: ID
   title: String
   username: String
-  voteList: [Vote] @materializer(query: "getVoteUsingPost_id")
+  postList: [Post] @materializer(query: "getPostUsingSubreddit_id")
+  comments: [Comment]
+    @materializer(
+      query: "getCommentUsingPost_id"
+      arguments: [{ name: "post_id", field: "id" }]
+    )
+  votes: [Vote]
+    @materializer(
+      query: "getVoteUsingPost_id"
+      arguments: [{ name: "post_id", field: "id" }]
+    )
+  subreddits: [Subreddit]
+    @materializer(
+      query: "getSubredditListById"
+      arguments: [{ name: "id", field: "subreddit_id" }]
+    )
 }
 
 type Subreddit {
@@ -52,6 +65,17 @@ type Vote {
 These are some examples of queries generated from the schema. Feel free to modify them or add your own.
 """
 type Query {
+  # Custom Queries
+  getSubredditListById(id: ID!): [Subreddit]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      select * from "subreddit" where "id" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
+  # Automated Queries
   getCommentList: [Comment]
     @dbquery(
       type: "postgresql"
@@ -107,6 +131,7 @@ type Query {
       SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
         FROM "public"."vote" T
         WHERE T."post_id" = $1
+        order by "created_at" desc
       """
       configuration: "postgresql_config"
     )
