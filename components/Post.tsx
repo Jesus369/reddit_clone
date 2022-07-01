@@ -45,6 +45,29 @@ function Post({ post }: Props) {
         </div>
         {/* Image */}
         <img className="w-full" src={post.image} alt="" />
+
+        {/* Footer */}
+        <div className="flex space-x-4 text-gray-400">
+          <div className="postButton">
+            <ChatAltIcon className="h-6 w-6" />
+            <p>{post.comments.length} Comments</p>
+          </div>
+          <div className="postButton">
+            <GiftIcon className="h-6 w-6" />
+            <p className="hidden sm:inline">Award</p>
+          </div>
+          <div className="postButton">
+            <ShareIcon className="h-6 w-6" />
+            <p className="hidden sm:inline">Share</p>
+          </div>
+          <div className="postButton">
+            <BookmarkIcon className="h-6 w-6" />
+            <p className="hidden sm:inline">Save</p>
+          </div>
+          <div className="postButton">
+            <DotsHorizontalIcon className="h-6 w-6" />
+          </div>
+        </div>
       </div>
     </div>
   );

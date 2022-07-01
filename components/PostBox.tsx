@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import client from "../apollo-client";
 import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
-import { GET_SUBREDDIT_BY_TOPIC } from "../graphql/queries";
+import { GET_SUBREDDIT_BY_TOPIC, GET_ALL_POSTS } from "../graphql/queries";
 
 // Data fields the form will contain
 type FormData = {
@@ -20,9 +20,15 @@ type FormData = {
   subreddit: string;
 };
 
-const PostBox = () => {
+type Props = {
+  subreddit?: string;
+};
+
+const PostBox = ({ subreddit }: Props) => {
   const { data: session } = useSession();
-  const [addPost] = useMutation(ADD_POST);
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries: [GET_ALL_POSTS, "getPostList"]
+  });
   const [addSubreddit] = useMutation(ADD_SUBREDDIT);
 
   const [imageBoxOpen, setImageBoxOpen] = useState(false);
@@ -35,16 +41,17 @@ const PostBox = () => {
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit(async formData => {
+    console.log("postings")
     try {
       const {
         data: { getSubredditListByTopic }
       } = await client.query({
         query: GET_SUBREDDIT_BY_TOPIC,
         variables: {
-          topic: formData.subreddit
+          topic: subreddit || formData.subreddit
         }
       });
-
+      console.log(getSubredditListByTopic)
       const subredditExists = getSubredditListByTopic.length > 0;
 
       if (!subredditExists) {
@@ -93,6 +100,10 @@ const PostBox = () => {
 
         console.log("new post", newPost);
       }
+      setValue("postBody", "");
+      setValue("postImage", "");
+      setValue("postTitle", "");
+      setValue("subreddit", "");
     } catch (err) {
       // Use existing subreddit
     }
@@ -104,14 +115,19 @@ const PostBox = () => {
     >
       <div className="flex items-center space-x-3">
         {/* Avatar */}
-        <Avatar large seed="jesus" />
+        <Avatar seed="jesus" large/>
+
         <input
           {...register("postTitle", { required: true })} //
           disabled={!session}
           type="text"
           className="flex-1 bg-gray-50 p-2 pl-5 outline-none rounded-md"
           placeholder={
-            session ? "Create A Post By Entering A Title" : "Sign In To Post"
+            session
+              ? subreddit
+                ? `Create a post in r/${subreddit} `
+                : "Create A Post By Entering A Title"
+              : "Sign In To Post"
           }
         />
 
@@ -138,20 +154,23 @@ const PostBox = () => {
             />
           </div>
 
-          <div className="flex items-center px-2">
-            <p className="min-w-[90px]">Subreddit:</p>
-            <input
-              className="m-2 flex-1 bg-blue-50 p-2 outline-none"
-              {...register("subreddit", { required: true })}
-              type="text"
-              placeholder="i.e. reactjs"
-            />
-          </div>
+          {!subreddit && (
+            <div className="flex items-center px-2">
+              <p className="min-w-[90px]">Subreddit:</p>
+              <input
+                className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+                {...register("subreddit", { required: true })}
+                type="text"
+                placeholder="i.e. reactjs"
+              />
+            </div>
+          )}
           {imageBoxOpen && (
             <div className="flex items-center px-2">
               <p className="min-w-[90px]">Image URL:</p>
               <input
                 className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+                {...register('postImage')}
                 type="text"
                 placeholder="Optional..."
               />
