@@ -9,6 +9,8 @@ function Subreddit() {
     query: { topic }
   } = useRouter();
 
+  const {data, error } = useQuery()
+
   return (
     <div className="h-24 bg-red-400 p-8">
       <div className="-mx-8 mt-10 bg-white">
@@ -27,7 +29,7 @@ function Subreddit() {
 
       <div>
         <PostBox subreddit={topic as string} />
-        <Feed />
+        <Feed topic={topic as string} />
       </div>
     </div>
   );
