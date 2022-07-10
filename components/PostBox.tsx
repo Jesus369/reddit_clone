@@ -41,7 +41,7 @@ const PostBox = ({ subreddit }: Props) => {
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit(async formData => {
-    console.log("postings")
+    console.log("postings");
     try {
       const {
         data: { getSubredditListByTopic }
@@ -51,7 +51,7 @@ const PostBox = ({ subreddit }: Props) => {
           topic: subreddit || formData.subreddit
         }
       });
-      console.log(getSubredditListByTopic)
+      console.log(getSubredditListByTopic);
       const subredditExists = getSubredditListByTopic.length > 0;
 
       if (!subredditExists) {
@@ -115,7 +115,7 @@ const PostBox = ({ subreddit }: Props) => {
     >
       <div className="flex items-center space-x-3">
         {/* Avatar */}
-        <Avatar seed="jesus" large/>
+        <Avatar seed="jesus" large />
 
         <input
           {...register("postTitle", { required: true })} //
@@ -170,7 +170,7 @@ const PostBox = ({ subreddit }: Props) => {
               <p className="min-w-[90px]">Image URL:</p>
               <input
                 className="m-2 flex-1 bg-blue-50 p-2 outline-none"
-                {...register('postImage')}
+                {...register("postImage")}
                 type="text"
                 placeholder="Optional..."
               />

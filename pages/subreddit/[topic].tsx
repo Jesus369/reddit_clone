@@ -4,12 +4,14 @@ import Avatar from "../../components/Avatar";
 import Feed from "../../components/Feed";
 import PostBox from "../../components/PostBox";
 
+
+
 function Subreddit() {
   const {
     query: { topic }
   } = useRouter();
 
-  const {data, error } = useQuery()
+
 
   return (
     <div className="h-24 bg-red-400 p-8">

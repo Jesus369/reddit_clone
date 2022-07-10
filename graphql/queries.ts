@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_POST_BY_POST_ID = gql`
-  query getPostByPostId($id: ID!) { 
+  query getPostByPostId($id: ID!) {
     getPost(id: $id) {
       body
       created_at
@@ -28,10 +28,10 @@ export const GET_POST_BY_POST_ID = gql`
         username
         created_at
         post_id
-      } 
+      }
     }
   }
-`
+`;
 
 export const GET_ALL_POSTS = gql`
   query getAllPosts {
@@ -74,7 +74,7 @@ export const GET_ALL_POST_BY_TOPIC = gql`
       body
       created_at
       image
-      title 
+      title
       subreddit_id
       comments {
         created_at
@@ -97,7 +97,7 @@ export const GET_ALL_POST_BY_TOPIC = gql`
       }
     }
   }
-`
+`;
 
 export const GET_SUBREDDIT_BY_TOPIC = gql`
   query getSubredditByTopic($topic: String!) {
@@ -105,6 +105,15 @@ export const GET_SUBREDDIT_BY_TOPIC = gql`
       id
       topic
       created_at
+    }
+  }
+`;
+
+export const GET_COMMENTS_BY_POSTID = gql`
+  query getCommentByPostId($id: ID!) {
+    GetCommentUsingPost_id(id: $id) {
+      username
+      text
     }
   }
 `;
