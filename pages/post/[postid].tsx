@@ -25,6 +25,10 @@ const PostPage = () => {
     }
   });
 
+  const [newComment] = useMutation(NEW_COMMENT, {
+    refetchQueries: [GET_POST_BY_POST_ID, "getPostByPostId"]
+  });
+
   const post: Post = data?.getPost;
 
   const {
@@ -45,6 +49,7 @@ const PostPage = () => {
           username: session?.user?.name
         }
       });
+      console.log(commentData);
 
       setValue("comment", "");
       toast.success("Comment successfully posted", {
