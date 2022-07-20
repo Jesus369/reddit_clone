@@ -109,6 +109,16 @@ export const GET_SUBREDDIT_BY_TOPIC = gql`
   }
 `;
 
+export const GET_VOTES_BY_POSTID = gql`
+  query getVotesByPostId($id: ID!) {
+    getVoteUsingPost_id(id: $id) {
+      id
+      upvote
+      username
+    }
+  }
+`;
+
 export const GET_COMMENTS_BY_POSTID = gql`
   query getCommentByPostId($id: ID!) {
     GetCommentUsingPost_id(id: $id) {
