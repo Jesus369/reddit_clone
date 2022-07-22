@@ -98,7 +98,7 @@ const PostPage = () => {
         {post?.comments?.map(comment => (
           <div
             className="relative flex items-center space-x-2 space-y-5"
-            key={comment?.id}
+            key={comment.username}
           >
             <hr className="absolute top-10 left-7 h-16 z-0 border" />
             <div className="z-50">
