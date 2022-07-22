@@ -109,6 +109,16 @@ export const GET_SUBREDDIT_BY_TOPIC = gql`
   }
 `;
 
+export const GET_SUBREDDITS_WITH_LIMIT = gql`
+  query getSubredditsWithLimit($limit: Int!) {
+    getSubredditListLimit(limit: $limit) {
+      created_at
+      id
+      topic
+    }
+  }
+`;
+
 export const GET_VOTES_BY_POSTID = gql`
   query getVotesByPostId($id: ID!) {
     getVoteUsingPost_id(id: $id) {
