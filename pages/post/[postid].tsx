@@ -102,7 +102,7 @@ const PostPage = () => {
           >
             <hr className="absolute top-10 left-7 h-16 z-0 border" />
             <div className="z-50">
-              <Avatar seed={comment.username} />
+              <Avatar seed={comment.id} />
             </div>
             <div className="flex flex-col">
               <p className="py-2 text-xs text-gray-400">
