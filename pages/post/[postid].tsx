@@ -30,6 +30,7 @@ const PostPage = () => {
   });
 
   const post: Post = data?.getPost;
+  const comments: Comment[] = data?.getPost.comments;
 
   const {
     register,
@@ -95,7 +96,7 @@ const PostPage = () => {
       <div className="-my-5 rounded-b-md border border-t-0 border-gray-300 bg-white py-5 px-10">
         <hr className="py-2" />
 
-        {post?.comments.map(comment => (
+        {comments?.map(comment => (
           <div
             className="relative flex items-center space-x-2 space-y-5"
             key={comment.id}
