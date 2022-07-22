@@ -132,6 +132,7 @@ export const GET_VOTES_BY_POSTID = gql`
 export const GET_COMMENTS_BY_POSTID = gql`
   query getCommentByPostId($id: ID!) {
     GetCommentUsingPost_id(id: $id) {
+      id
       username
       text
     }
