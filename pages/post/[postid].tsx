@@ -31,7 +31,7 @@ const PostPage = () => {
     refetchQueries: [GET_POST_BY_POST_ID, "getPostByPostId"]
   });
 
-  const post: Post = data?.getPost;
+  const post: typeof Post = data?.getPost;
   const comments: Comment[] = data?.getPost.comments;
 
   const {
