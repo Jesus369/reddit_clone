@@ -20,6 +20,8 @@ const Feed = ({ topic }: Props) => {
     ? data?.getPostList
     : data?.getPostListByTopic;
 
+  const post: typeof Post;
+
   return (
     <div className="mt-5 space-y-4">
       {posts?.map(post => (
