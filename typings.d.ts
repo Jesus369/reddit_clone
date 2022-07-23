@@ -20,7 +20,7 @@ type Subreddit = {
   topic: string;
 };
 
-type Post = {
+export type Post = {
   body: string;
   created_at: string;
   id: number;
