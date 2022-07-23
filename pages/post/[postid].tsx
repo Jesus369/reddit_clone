@@ -12,6 +12,8 @@ import { GET_POST_BY_POST_ID } from "../../graphql/queries";
 import { NEW_COMMENT } from "../../graphql/mutations";
 import Avatar from "../../components/Avatar";
 
+import { Comment } from "../../typings";
+
 type FormData = {
   comment: string;
 };
@@ -97,7 +99,11 @@ const PostPage = () => {
         <hr className="py-2" />
 
         {comments?.map(comment => (
-          <div className="relative flex items-center space-x-2 space-y-5">
+          <div
+            className="relative flex items-center space-x-2 space-y-5"
+            key={comment.id}
+          >
+            {comment.id}
             <hr className="absolute top-10 left-7 h-16 z-0 border" />
             <div className="z-50">
               <Avatar seed={comment.id} />

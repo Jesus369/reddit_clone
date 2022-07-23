@@ -1,4 +1,4 @@
-type Comment = {
+export type Comment = {
   created_at: string;
   id: number;
   post_id: number;
