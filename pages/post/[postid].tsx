@@ -97,10 +97,8 @@ const PostPage = () => {
         <hr className="py-2" />
 
         {comments?.map(comment => (
-          <div
-            className="relative flex items-center space-x-2 space-y-5"
-            key={comment.id}
-          >
+          <div className="relative flex items-center space-x-2 space-y-5">
+            {comment.id}
             <hr className="absolute top-10 left-7 h-16 z-0 border" />
             <div className="z-50">
               <Avatar seed={comment.id} />
