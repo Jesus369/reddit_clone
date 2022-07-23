@@ -16,7 +16,9 @@ const Feed = ({ topic }: Props) => {
         }
       });
 
-  const posts: Post[] = !topic ? data?.getPostList : data?.getPostListByTopic;
+  const posts: typeof Post[] = !topic
+    ? data?.getPostList
+    : data?.getPostListByTopic;
 
   return (
     <div className="mt-5 space-y-4">
