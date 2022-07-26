@@ -19,6 +19,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_VOTE } from "../graphql/mutations";
 import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 
+import { Post } from "../typings";
+
 type Props = {
   post: typeof Post;
 };
