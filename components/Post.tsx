@@ -20,7 +20,7 @@ import { ADD_VOTE } from "../graphql/mutations";
 import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 
 type Props = {
-  post: Post;
+  post: typeof Post;
 };
 
 function Post({ post }: Props) {
