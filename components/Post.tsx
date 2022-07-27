@@ -29,7 +29,7 @@ function Post({ post }: Props) {
 
   // FETCHING VOTES
 
-  const { data, loading } = useQuery<Post>(GET_VOTES_BY_POSTID, {
+  const { data, loading } = useQuery<typeof Post>(GET_VOTES_BY_POSTID, {
     variables: {
       id: post?.id
     }
