@@ -28,12 +28,15 @@ function Post({ post }: Props) {
   const { data: session } = useSession();
 
   // FETCHING VOTES
-
-  const { data, loading } = useQuery<typeof Post>(GET_VOTES_BY_POSTID, {
-    variables: {
-      id: post?.id
+  console.log(post);
+  const { data, loading } = useQuery<({ post }: Props) => Post>(
+    GET_VOTES_BY_POSTID,
+    {
+      variables: {
+        id: post?.id
+      }
     }
-  });
+  );
 
   // POSTING VOTES
   const [addVote] = useMutation(ADD_VOTE, {
@@ -75,7 +78,7 @@ function Post({ post }: Props) {
 
   const displayVotes = (data: any) => {
     const votes: Vote[] = data?.getVoteUsingPost_id;
-    console.log(votes);
+
     const displayNumber = votes?.reduce(
       (total, vote) => (vote.upvote ? (total += 1) : (total -= 1)),
       0
