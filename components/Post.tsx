@@ -29,7 +29,7 @@ function Post({ post }: Props) {
 
   // FETCHING VOTES
   console.log(post);
-  const { data, loading } = useQuery<({ post }: Props) => Post>(
+  const { data, loading } = useQuery<({ post }: typeof Props) => Post>(
     GET_VOTES_BY_POSTID,
     {
       variables: {
