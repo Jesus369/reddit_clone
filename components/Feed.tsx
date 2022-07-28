@@ -8,7 +8,7 @@ type Props = {
   id: number;
 };
 
-const Feed = ({ topic }: Props) => {
+const Feed = ({ topic, id }: Props) => {
   const { data, error } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POST_BY_TOPIC, {
@@ -23,7 +23,7 @@ const Feed = ({ topic }: Props) => {
 
   return (
     <div className="mt-5 space-y-4">
-      {posts?.map((id: typeof Post) => (
+      {posts?.map((post: typeof Post) => (
         <Post key={post.id} post={post} />
       ))}
     </div>
