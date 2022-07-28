@@ -19,24 +19,24 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_VOTE } from "../graphql/mutations";
 import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 
+import { Vote, TypePost } from "../typings";
+
 type Props = {
-  post: typeof Post;
+  post: TypePost;
+  id: number;
 };
 
-function Post({ post }: Props) {
+function Post({ post, id }: Props) {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
   // FETCHING VOTES
-  console.log(post);
-  const { data, loading } = useQuery<({ post }: Props) => typeof Post>(
-    GET_VOTES_BY_POSTID,
-    {
-      variables: {
-        id: post?.id
-      }
+
+  const { data, loading } = useQuery(GET_VOTES_BY_POSTID, {
+    variables: {
+      id: post?.id
     }
-  );
+  });
 
   // POSTING VOTES
   const [addVote] = useMutation(ADD_VOTE, {
@@ -44,7 +44,7 @@ function Post({ post }: Props) {
   });
 
   useEffect(() => {
-    const votes: Vote[] = data?.getVoteUsingPost_id;
+    const votes: typeof Vote[] = data?.getVoteUsingPost_id;
 
     // Will return True or False
     const vote = votes?.find(

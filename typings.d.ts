@@ -6,7 +6,7 @@ export type Comment = {
   username: string;
 };
 
-type Vote = {
+export type Vote = {
   created_at: string;
   id: number;
   post_id: number;
@@ -20,10 +20,10 @@ type Subreddit = {
   topic: string;
 };
 
-export type Post = {
+export type TypePost = {
   body: string;
   created_at: string;
-  id: number;
+  [id: number]: any;
   image: string;
   subreddit_id: number;
   title: string;
@@ -32,3 +32,15 @@ export type Post = {
   comments: Comment[];
   subreddits: Subreddit[];
 };
+
+// Response
+
+type Response = {
+  post: Post;
+};
+
+type inputProps = {
+  id: number;
+};
+
+type ChildProps = ChildDataProps<InputProps, Response, Variables>;
