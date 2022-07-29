@@ -7,6 +7,7 @@ type Props = {
   topic?: string;
   post: typeof Post;
   key: number;
+  id: number;
 };
 
 const Feed = ({ topic }: Props) => {
