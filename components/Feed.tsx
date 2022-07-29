@@ -5,10 +5,11 @@ import { GET_ALL_POSTS, GET_ALL_POST_BY_TOPIC } from "../graphql/queries";
 
 type Props = {
   topic?: string;
+  post: typeof Post;
   id: number;
 };
 
-const Feed = ({ topic, id }: Props) => {
+const Feed = ({ topic }: Props) => {
   const { data, error } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POST_BY_TOPIC, {
