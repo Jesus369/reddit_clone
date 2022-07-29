@@ -6,7 +6,7 @@ import { GET_ALL_POSTS, GET_ALL_POST_BY_TOPIC } from "../graphql/queries";
 type Props = {
   topic?: string;
   post: typeof Post;
-  id: number;
+  key: number;
 };
 
 const Feed = ({ topic }: Props) => {
