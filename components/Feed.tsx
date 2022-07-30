@@ -3,7 +3,7 @@ import Post from "./Post";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_POSTS, GET_ALL_POST_BY_TOPIC } from "../graphql/queries";
 
-interface Props extends Post {
+interface Props extends typeof Post {
   topic: string;
   post: typeof Post;
   key: number;
