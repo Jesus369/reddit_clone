@@ -23,7 +23,7 @@ import { Vote, Post } from "../typings";
 
 type PostProps = {
   post: typeof Post;
-  id?: number;
+  id?: any;
 };
 
 const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
@@ -33,9 +33,7 @@ const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
   // FETCHING VOTES
 
   const { data, loading } = useQuery(GET_VOTES_BY_POSTID, {
-    variables: {
-      id: post?.id
-    }
+    variables: { id: post?.id }
   });
 
   // POSTING VOTES
