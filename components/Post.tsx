@@ -21,12 +21,12 @@ import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 
 import { Vote, Post } from "../typings";
 
-type Props = {
+type PostProps = {
   post: typeof Post;
   id?: number;
 };
 
-const Post: FunctionComponent<Props> = ({ post, id }: Props) => {
+const Post: FunctionComponent<PostProps> = ({ post, id }: Props) => {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
