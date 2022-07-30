@@ -7,10 +7,10 @@ type Props = {
   topic?: string;
   post: typeof Post;
   key: number;
-  id: number;
+  id?: number;
 };
 
-const Feed = ({ topic, id }: Props) => {
+const Feed = ({ topic, post, id }: Props) => {
   const { data, error } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POST_BY_TOPIC, {
