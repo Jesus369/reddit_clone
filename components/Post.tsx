@@ -26,7 +26,7 @@ type PostProps = {
   id?: number;
 };
 
-const Post: FunctionComponent<PostProps> = ({ post, id }: Props) => {
+const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
