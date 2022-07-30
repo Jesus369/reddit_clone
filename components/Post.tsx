@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FunctionComponent } from "react";
 import Link from "next/link";
 import Avatar from "./Avatar";
 import {
@@ -26,7 +26,7 @@ type Props = {
   id?: number;
 };
 
-function Post({ post }: Props) {
+const Post: FunctionComponent<Props> = ({ post, id }: Props) => {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
@@ -166,6 +166,6 @@ function Post({ post }: Props) {
       </Link>
     </div>
   );
-}
+};
 
 export default Post;
