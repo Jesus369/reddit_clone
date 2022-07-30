@@ -10,7 +10,7 @@ type Props = {
   id: number;
 };
 
-const Feed = ({ topic }: Props) => {
+const Feed = ({ topic, id }: Props) => {
   const { data, error } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POST_BY_TOPIC, {

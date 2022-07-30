@@ -22,7 +22,7 @@ import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 import { Vote, TypePost } from "../typings";
 
 type Props = {
-  post: TypePost;
+  post: typeof Post;
   id: number;
 };
 
