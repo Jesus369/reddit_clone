@@ -23,7 +23,7 @@ type Subreddit = {
 export type Post = {
   body: string;
   created_at: string;
-  id: number;
+  id?: number;
   image: string;
   subreddit_id: number;
   title: string;

@@ -3,14 +3,14 @@ import Post from "./Post";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_POSTS, GET_ALL_POST_BY_TOPIC } from "../graphql/queries";
 
-interface Props extends typeof Post {
-  topic: string;
+type Props = {
+  topic?: string;
   post: typeof Post;
   key: number;
   id?: number;
-}
+};
 
-const Feed = ({ topic, post, id }: Props) => {
+const Feed = ({ topic }: Props) => {
   const { data, error } = !topic
     ? useQuery(GET_ALL_POSTS)
     : useQuery(GET_ALL_POST_BY_TOPIC, {
