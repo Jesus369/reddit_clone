@@ -23,7 +23,7 @@ import { Vote, Post } from "../typings";
 
 type PostProps = {
   post: typeof Post;
-  id?: any;
+  id?: number;
 };
 
 const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
