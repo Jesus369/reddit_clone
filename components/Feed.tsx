@@ -25,9 +25,7 @@ const Feed = ({ topic }: Props) => {
 
   return (
     <div className="mt-5 space-y-4">
-      {posts?.map((post: Props) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {posts && posts?.map((post: any) => <Post post={post} key={post.id} />)}
     </div>
   );
 };
