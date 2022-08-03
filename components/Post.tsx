@@ -26,10 +26,10 @@ interface PostProps {
 }
 
 interface GetVotesVar {
-  id: number;
+  id?: number;
 }
 
-function Post({ post }: PostProps) {
+const Post = ({ post }: { post: PostProps }) => {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
@@ -170,6 +170,6 @@ function Post({ post }: PostProps) {
       </Link>
     </div>
   );
-}
+};
 
 export default Post;
