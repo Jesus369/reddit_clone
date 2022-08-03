@@ -21,13 +21,13 @@ import { GET_VOTES_BY_POSTID } from "../graphql/queries";
 
 import { Vote, Post } from "../typings";
 
-type PostProps = {
+interface PostProps {
   post: typeof Post;
-};
+}
 
-type GetVotesVar = {
+interface GetVotesVar {
   id: number;
-};
+}
 
 function Post({ post }: PostProps) {
   const [vote, setVote] = useState<boolean>();
