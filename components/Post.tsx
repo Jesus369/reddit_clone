@@ -23,18 +23,24 @@ import { Vote, Post } from "../typings";
 
 type PostProps = {
   post: typeof Post;
-  id?: number;
 };
 
-const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
+type GetVotesVar = {
+  id: number;
+};
+
+function Post({ post }: PostProps) {
   const [vote, setVote] = useState<boolean>();
   const { data: session } = useSession();
 
   // FETCHING VOTES
 
-  const { data, loading } = useQuery(GET_VOTES_BY_POSTID, {
-    variables: { id: post?.id }
-  });
+  const { data, loading } = useQuery<PostProps, GetVotesVar>(
+    GET_VOTES_BY_POSTID,
+    {
+      variables: { id: post?.id }
+    }
+  );
 
   // POSTING VOTES
   const [addVote] = useMutation(ADD_VOTE, {
@@ -164,6 +170,6 @@ const Post: FunctionComponent<PostProps> = ({ post, id }: PostProps) => {
       </Link>
     </div>
   );
-};
+}
 
 export default Post;
